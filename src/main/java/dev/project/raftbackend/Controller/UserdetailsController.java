@@ -43,6 +43,7 @@ public class UserdetailsController {
         }
         catch (Exception e){
             System.out.println(e);
+            e.printStackTrace();
             return "Error";
         }
         return "Login link has been sent your email account successfully";
