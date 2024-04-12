@@ -135,5 +135,10 @@ public class RouteController {
             System.out.println("Error");
         }
     }
+    
+    @GetMapping("/message")
+    public String message() {
+        return "Congrats !! App deployed";
+    }
 
 }
