@@ -3,6 +3,8 @@ package dev.project.raftbackend.model;
 
 import java.time.LocalDateTime;
 
+import org.hibernate.annotations.CreationTimestamp;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -20,6 +22,7 @@ public class Education {
     private Long id;
 
     private String educationType;
-
+    
+    @CreationTimestamp
     private LocalDateTime createdAt;
 };

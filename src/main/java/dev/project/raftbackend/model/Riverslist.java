@@ -1,6 +1,9 @@
 package dev.project.raftbackend.model;
 
 import java.time.LocalDateTime;
+
+import org.hibernate.annotations.CreationTimestamp;
+
 import java.time.LocalDate;
 
 import jakarta.persistence.Entity;
@@ -25,6 +28,7 @@ public class Riverslist {
     private String outfitter;
     private String level;
     private LocalDate date;
-
+    
+    @CreationTimestamp
     private LocalDateTime createdAt;
 };

@@ -2,6 +2,8 @@ package dev.project.raftbackend.model;
 
 import java.time.LocalDateTime;
 
+import org.hibernate.annotations.CreationTimestamp;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.Table;
 import jakarta.persistence.Id;
@@ -49,7 +51,8 @@ public class Userdetails {
     private String text_box1;
     private String text_box2;
     private String resedential_detail;
-
+     
+    @CreationTimestamp
     private LocalDateTime createdAt;
 
 
