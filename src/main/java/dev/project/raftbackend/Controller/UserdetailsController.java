@@ -36,6 +36,7 @@ public class UserdetailsController {
 
         try {
             String clickableLink = "https://raftapp.azurewebsites.net/login/" + token;
+        	//  String clickableLink = "http://localhost:8080/login/" + token;
 
             mailService.sendMail(userdetails.getEmailid(), "Your Verification Link", clickableLink);
             System.out.println("Mail Sent Successfully!");

@@ -19,7 +19,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
-
+import java.io.IOException;
 import java.util.Base64;
 
 import static dev.project.raftbackend.Service.CookieService.isTokenExpired;
@@ -37,7 +37,7 @@ public class Step0 {
 
     @CrossOrigin(origins = "*")
     @GetMapping("/login/{token}")
-    public Object firstserve(@PathVariable("token") String token, HttpServletResponse response){
+    public Object firstserve(@PathVariable("token") String token, HttpServletResponse response) throws IOException{
         String[] chunks = token.split("\\.");
         if(isTokenExpired(token)){
             ErrorResponse errorResponse = new ErrorResponse("Token has either Expired or does not exist", HttpStatus.BAD_REQUEST);
@@ -60,9 +60,11 @@ public class Step0 {
             cookie.setSecure(false); // Set this to true if you're using HTTPS
             cookie.setMaxAge(24 * 60 * 60);
             response.addCookie(cookie);
-            return cookie;
+            String redirectUrl = "https://raftstoragesite.z13.web.core.windows.net/step-1.html?token="+token;
+            response.sendRedirect(redirectUrl);
+           // return response;
 
-
+          return ResponseEntity.ok().body(redirectUrl);
         } catch (ParseException e) {
             throw new RuntimeException(e);
         }
