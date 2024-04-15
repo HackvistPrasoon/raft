@@ -53,6 +53,26 @@ public class CookieService {
         }
         return "Failed";
     }
+    
+    public String getEmailId(String token) {
+    	
+    	 if(!isTokenExpired(token)) {
+    		 System.out.println(token);
+             Base64.Decoder decoder = Base64.getUrlDecoder();
+             String[] chunks = token.split("\\.");
+             System.out.println(chunks[0]+"  ---  "+chunks[1]);
+             String payload = new String((decoder.decode(chunks[1])));
+             JSONParser parser = new JSONParser();
+             try {
+                 JSONObject json = (JSONObject) parser.parse(payload);
+                 return (String) json.get("email");
+             } catch (Exception e) {
+                 throw new RuntimeException(e);
+             }
+         }
+         return "Failed";
+    	
+    }
 
     public static boolean isTokenExpired(String token) {
         try {

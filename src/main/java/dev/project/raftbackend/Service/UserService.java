@@ -8,17 +8,18 @@ import org.springframework.stereotype.Service;
 @Service
 public class UserService {
 
-    private final UserdetailsRepo userRepository; // Assuming you have a UserRepository
-    @Autowired
-    public UserService(UserdetailsRepo userRepository) {
-        this.userRepository = userRepository;
-    }
+	private final UserdetailsRepo userRepository; // Assuming you have a UserRepository
 
+	@Autowired
+	public UserService(UserdetailsRepo userRepository) {
+		this.userRepository = userRepository;
+	}
 
-    public Userdetails findUserByEmail(String emailid) {
+	public Userdetails findUserByEmail(String emailid) {
 
-
-        return userRepository.findByEmailid(emailid);
-    }
+		System.out.println("user repo is called");
+		Userdetails usd = userRepository.findByEmailid(emailid);
+		System.out.println("user from db"+usd.toString());
+		return usd;
+	}
 }
-
