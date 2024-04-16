@@ -74,7 +74,7 @@ public class Step0 {
 			ResponseData responseData = new ResponseData();
 			
 			//String mini_url = "http://localhost:8080/";
-			String mini_url = "https://raftapp.azurewebsites.net";
+			String mini_url = "https://raftapp.azurewebsites.net/";
 			
 			String redirectUrl = null;
 			
