@@ -51,8 +51,8 @@ $(document).ready(function() {
 
         $.ajax({
             type: "POST",
-           // url: "https://raftapp.azurewebsites.net/createuser",
-            url: "http://localhost:8080/createuser",
+            url: "https://raftapp.azurewebsites.net/createuser",
+           // url: "http://localhost:8080/createuser",
             data: JSON.stringify(formData),
             contentType: "application/json",
             success: function(response) {
