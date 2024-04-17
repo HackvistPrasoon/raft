@@ -68,7 +68,7 @@
               <div class="text-block-6">If none apply or you want us to send you DIY options check here:</div><label class="w-checkbox checkbox-field"><input type="checkbox" id="checkbox" name="checkbox" data-name="Checkbox" ms-code-checkbox-input="step2" class="w-checkbox-input checkbox"><span class="checkbox-label w-form-label" for="checkbox">Checkbox</span></label>
             </div><input class="text-field-2 w-input" autofocus="true" maxlength="256" name="DIY-Text" data-name="DIY Text" ms-code-checkbox-display="step2" placeholder="Enter your DIY option" type="text" id="DIY-Text">
             <div class="div-block-7">
-              <a href="step-1.html" class="button submit-button left w-inline-block"><img src="images/Слой_1Back_arrow.svg" loading="lazy" alt="" class="image-7">
+              <a href="#" onclick="back_button('step-1.html')" class="button submit-button left w-inline-block"><img src="images/Слой_1Back_arrow.svg" loading="lazy" alt="" class="image-7">
                 <div id="w-node-_8a5f74dc-f2c9-89e1-7311-8122075ff061-df2646c9" class="text-block-7">Back</div>
               </a>
               <!-- <a id="w-node-f24dd53c-b36d-1386-6f8b-1ad5bb046968-df2646c9" href="step-3.html" class="button submit-button left w-inline-block">
@@ -106,8 +106,8 @@
              };
     	 $.ajax({
              type: "POST",
-             //url: "http://localhost:8080/stepList",
-             url: "https://raftapp.azurewebsites.net/stepList",
+            // url: "http://localhost:8080/stepList",
+             url: "https://raftstoragesite.z13.web.core.windows.net/stepList",
              data: JSON.stringify(formData),
              contentType: "application/json",
              success: function(response) {
@@ -180,7 +180,7 @@ for (const step in response) {
     
             $.ajax({
                 type: "POST",
-                url: "https://raftapp.azurewebsites.net/api/step2",
+                url: "https://raftstoragesite.z13.web.core.windows.net/api/step2",
                // url: "http://localhost:8080/api/step2",
                 data: JSON.stringify(formData),
                 contentType: "application/json",
@@ -189,8 +189,8 @@ for (const step in response) {
                     // Handle success
                      if(response.status==='ok'){
                     	if(response.token===token){
-                    		var redirectUrl = "https://raftapp.azurewebsites.net/step-3.html?token=" + response.token;
-
+                    		//var redirectUrl = "https://raftstoragesite.z13.web.core.windows.net/step-3.html?token=" + response.token;
+                    		var redirectUrl = "http://localhost:8080/step-3.html?token=" + response.token;
                     		// Redirect to the new URL
                     		window.location.href = redirectUrl;
                     	}
@@ -213,7 +213,7 @@ for (const step in response) {
         
         $.ajax({
             type: "GET",
-            url: "https://raftapp.azurewebsites.net/riverlist",
+            url: "https://raftstoragesite.z13.web.core.windows.net/riverlist",
             //url: "http://localhost:8080/riverlist",
             contentType: "application/json",
             success: function(response) {
@@ -226,7 +226,7 @@ for (const step in response) {
             	    var riverItemHTML = `
             	        <div class="w-layout-grid grid list">
             	            <label id="w-node-_0b31a7bd-9e62-07ce-4c01-8be51a421eb3-df2646c9" class="w-radio">
-            	                <div class="w-form-formradioinput w-form-formradioinput--inputType-custom w-radio-input"></div>
+            	                <div class="w-form-formradioinput w-form-formradioinput--inputType-custom w-radio-input" id="redio_class_${item.id}"></div>
             	                <input type="radio" name="Rivers" id="River_${item.id}" data-name="Rivers" style="opacity:0;position:absolute;z-index:-1" value="${item.id}">
             	                <span class="radio-button-label w-form-label" for="River_${item.id}"></span>
             	            </label>
@@ -239,11 +239,14 @@ for (const step in response) {
             	    
             	    // Append HTML for this item to riversHTML variable
             	    riversHTML += riverItemHTML;
+            	    
             	});
+            	
                 //console.log(riversHTML);
             	// Now, riversHTML contains HTML for all items
             	// You can use it to set the content of a container element
             	$('#river').html(riversHTML);
+            	
                 console.log("Success:", response);
                 $('.success-message').show();
                 $('.error-message').hide();
@@ -255,10 +258,60 @@ for (const step in response) {
                 $('.error-message').show();
             }
         });
+    	fill(token,'steptwo');
+  
+       
     });
     
-    
+    function back_button(url){
+    	var urlParams = new URLSearchParams(window.location.search);
+    	console.log(urlParams);
+        var token = urlParams.get('token');
+    	var redirectUrl = url+"?token=" +token;
+		// Redirect to the new URL
+		console.log(redirectUrl)
+		window.location.href = redirectUrl;
+    }
    
+    function fill(token,api){
+   	 var formData = {
+               
+                "token" : token
+            };
+    
+            $.ajax({
+                type: "POST",
+                url: "https://raftstoragesite.z13.web.core.windows.net/api/"+api,
+               // url: "http://localhost:8080/api/"+api, 
+                data: JSON.stringify(formData),
+                contentType: "application/json",
+                success: function(response) {
+                    // Handle success
+                console.log("Success:", response);
+                // Check if the radio button needs to be checked
+                var riverId = response.river_id; // Assuming response.river_id contains the correct ID
+                
+                // Check if the riverId exists and if it corresponds to any radio button
+                if (riverId && $('#River_' + riverId).length > 0) {
+                	console.log($('#River_' + riverId).val()); 
+                    // Set the checked property of the radio button to true
+                	$('#River_' + riverId).prop('checked', true);
+                	$(`#redio_class_${riverId}`).addClass('w--redirected-checked');
+
+                }
+
+                    console.log("Success:", response);
+                    $('.success-message').show();
+                    $('.error-message').hide();
+                },
+                error: function(xhr, status, error) {
+                    // Handle errors
+                    console.error("Error:", error);
+                    $('.success-message').hide();
+                    $('.error-message').show();
+                }
+            });
+   }
        </script>
 </body>
 </html>
