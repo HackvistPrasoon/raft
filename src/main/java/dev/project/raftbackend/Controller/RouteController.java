@@ -150,7 +150,7 @@ public class RouteController {
         }
     }
     
-    @CrossOrigin(origins = "*")
+   @CrossOrigin(origins = "*")
     @PostMapping("api/step3")
     public ResponseEntity<?>  step3(HttpServletRequest request, @RequestBody UserDetailsBean userdetails1) {
         try {
@@ -165,6 +165,7 @@ public class RouteController {
             userdetails.setModerate(userdetails1.getModerate());
             userdetails.setLiberal(userdetails1.getLiberal());
             userdetails.setProgressive(userdetails1.getProgressive());
+            userdetails.setSocialist(userdetails1.getSocialist());
             userdetails.setApolitical(userdetails1.getApolitical());
             //2nd Row
             userdetails.setDemocrat(userdetails1.getDemocrat());
