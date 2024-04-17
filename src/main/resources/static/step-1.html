@@ -65,8 +65,8 @@
              };
     	 $.ajax({
              type: "POST",
-             //url: "http://localhost:8080/stepList",
-             url: "https://raftapp.azurewebsites.net/stepList",
+            // url: "http://localhost:8080/stepList",
+             url: "https://raftstoragesite.z13.web.core.windows.net/stepList",
              data: JSON.stringify(formData),
              contentType: "application/json",
              success: function(response) {
@@ -131,16 +131,16 @@ $('.div-block-3').html( lists);
     
             $.ajax({
                 type: "POST",
-                url: "https://raftapp.azurewebsites.net/api/step1",
-                //url: "http://localhost:8080/api/step1", 
+                url: "https://raftstoragesite.z13.web.core.windows.net/api/step1",
+               // url: "http://localhost:8080/api/step1", 
                 data: JSON.stringify(formData),
                 contentType: "application/json",
                 success: function(response) {
                     // Handle success
                     if(response.status==='ok'){
                     	if(response.token===token){
-                    		//var redirectUrl = "http://localhost:8080/step-2.html?token=" + response.token;
-							var redirectUrl = "https://raftapp.azurewebsites.net/step-2.html?token=" + response.token;
+                    		var redirectUrl = "http://localhost:8080/step-2.html?token=" + response.token;
+							//var redirectUrl = "https://raftstoragesite.z13.web.core.windows.net/step-2.html?token=" + response.token;
                     		// Redirect to the new URL
                     		window.location.href = redirectUrl;
                     	}
@@ -157,8 +157,51 @@ $('.div-block-3').html( lists);
                 }
             });
         });
+        fill(token,'stepone');
     });
-    
+    function fill(token,api){
+    	 var formData = {
+                
+                 "token" : token
+             };
+     
+             $.ajax({
+                 type: "POST",
+                 url: "https://raftstoragesite.z13.web.core.windows.net/api/"+api,
+                // url: "http://localhost:8080/api/"+api, 
+                 data: JSON.stringify(formData),
+                 contentType: "application/json",
+                 success: function(response) {
+                     // Handle success
+                 console.log("Success:", response);
+                       $('#First-Name').val(response.first_name);
+                       $('#Last-Name').val(response.last_name);
+                     if(response.status==='ok'){
+                     	if(response.token===token){
+                     		
+                     	}
+                     }
+                     console.log("Success:", response);
+                     $('.success-message').show();
+                     $('.error-message').hide();
+                 },
+                 error: function(xhr, status, error) {
+                     // Handle errors
+                     console.error("Error:", error);
+                     $('.success-message').hide();
+                     $('.error-message').show();
+                 }
+             });
+    }
+    function back_button(url){
+    	var urlParams = new URLSearchParams(window.location.search);
+    	console.log(urlParams);
+        var token = urlParams.get('token');
+    	var redirectUrl = url+"?token=" +token;
+		// Redirect to the new URL
+		console.log(redirectUrl)
+		window.location.href = redirectUrl;
+    }
        </script>
 </body>
 </html>
