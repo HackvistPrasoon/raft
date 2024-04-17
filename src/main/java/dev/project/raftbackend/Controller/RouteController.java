@@ -70,6 +70,119 @@ public class RouteController {
         System.out.println(email);
         return getUserByEmail(email).getBody();
     }
+    
+    @CrossOrigin(origins = "*")
+    @PostMapping("/api/stepone")
+    public ResponseEntity<?> getStepOne(HttpServletRequest request, @RequestBody UserDetailsBean userdetails1) {
+
+    	try {
+//        	System.out.println("I'm here at step3");
+            String email = cookieService.getEmailId(userdetails1.getToken());
+            System.out.println(email);
+            Userdetails ud = getUserByEmail(email).getBody();
+            
+            	        
+	        // Return response with status OK and response object
+	        return ResponseEntity.ok(ud);
+			
+        }
+        catch (Exception e){
+        	System.out.println("page Catch");
+            System.out.println(e);
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+        }
+    }
+    
+    @CrossOrigin(origins = "*")
+    @PostMapping("/api/steptwo")
+    public ResponseEntity<?> getStepTwo(HttpServletRequest request, @RequestBody UserDetailsBean userdetails1) {
+    	
+    	try {
+//        	System.out.println("I'm here at step3");
+            String email = cookieService.getEmailId(userdetails1.getToken());
+            System.out.println(email);
+            Userdetails ud = getUserByEmail(email).getBody();
+            
+            	        
+	        // Return response with status OK and response object
+	        return ResponseEntity.ok(ud);
+			
+        }
+        catch (Exception e){
+        	System.out.println("page Catch");
+            System.out.println(e);
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+        }
+    	
+        
+    }
+    
+    @CrossOrigin(origins = "*")
+    @PostMapping("/api/stepthree")
+    public ResponseEntity<?> getStepThree(HttpServletRequest request, @RequestBody UserDetailsBean userdetails1) {
+
+        try {
+//        	System.out.println("I'm here at step3");
+            String email = cookieService.getEmailId(userdetails1.getToken());
+            System.out.println(email);
+            Userdetails ud = getUserByEmail(email).getBody();
+            
+            	        
+	        // Return response with status OK and response object
+	        return ResponseEntity.ok(ud);
+			
+        }
+        catch (Exception e){
+        	System.out.println("page Catch");
+            System.out.println(e);
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+        }
+    }
+    
+    @CrossOrigin(origins = "*")
+    @PostMapping("/api/stepfour")
+    public ResponseEntity<?> getStepFour(HttpServletRequest request, @RequestBody UserDetailsBean userdetails1) {
+
+        try {
+//        	System.out.println("I'm here at step3");
+            String email = cookieService.getEmailId(userdetails1.getToken());
+            System.out.println(email);
+            Userdetails ud = getUserByEmail(email).getBody();
+            
+            	        
+	        // Return response with status OK and response object
+	        return ResponseEntity.ok(ud);
+			
+        }
+        catch (Exception e){
+        	System.out.println("page Catch");
+            System.out.println(e);
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+        }
+    }
+    
+    @CrossOrigin(origins = "*")
+    @PostMapping("/api/stepfive")
+    public ResponseEntity<?> getStepFive(HttpServletRequest request, @RequestBody UserDetailsBean userdetails1) {
+    	
+    	try {
+//        	System.out.println("I'm here at step3");
+            String email = cookieService.getEmailId(userdetails1.getToken());
+            System.out.println(email);
+            Userdetails ud = getUserByEmail(email).getBody();
+            
+            	        
+	        // Return response with status OK and response object
+	        return ResponseEntity.ok(ud);
+			
+        }
+        catch (Exception e){
+        	System.out.println("page Catch");
+            System.out.println(e);
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+        }
+    	
+    }
 
     @CrossOrigin(origins = "*")
     @PostMapping("api/step1")
@@ -150,7 +263,7 @@ public class RouteController {
         }
     }
     
-   @CrossOrigin(origins = "*")
+    @CrossOrigin(origins = "*")
     @PostMapping("api/step3")
     public ResponseEntity<?>  step3(HttpServletRequest request, @RequestBody UserDetailsBean userdetails1) {
         try {
@@ -276,7 +389,7 @@ public class RouteController {
             userdetails.setOmb_first_name(userdetails1.getOmb_first_name());
             userdetails.setOmb_last_name(userdetails1.getOmb_last_name());
 
-
+            System.out.println("Step 5:- "+userdetails);
             repo.saveAndFlush(userdetails);
             
             TabMapping tabs = mappingRepo.findByEmailId(email);
@@ -340,7 +453,7 @@ public class RouteController {
              return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
          }
     }
-	
+    
     @CrossOrigin(origins = "*")
     @PostMapping("api/previewapp")
     public ResponseEntity<?>  preview(HttpServletRequest request, @RequestBody UserDetailsBean userdetails1) {
@@ -378,7 +491,7 @@ public class RouteController {
             Location loc = locRepo.getLocation(userdetails.getLocation_id());
             udp.setLocation(loc.getLocation());
             
-            if(userdetails.getConservative().equalsIgnoreCase("A")) {
+            if(userdetails.getConservative().equalsIgnoreCase("AA")) {
             	udp.setConservative("Always Agree");
             } else if(userdetails.getConservative().equalsIgnoreCase("FA")) {
             	udp.setConservative("Frequently Agree");
@@ -406,7 +519,7 @@ public class RouteController {
             	udp.setLibertarian("Always Agree");
             } else if(userdetails.getLibertarian().equalsIgnoreCase("FA")) {
             	udp.setLibertarian("Frequently Agree");
-            } else if(userdetails.getLibertarian().equalsIgnoreCase("River_N")) {
+            } else if(userdetails.getLibertarian().equalsIgnoreCase("N")) {
             	udp.setLibertarian("Neutral");
             } else if(userdetails.getLibertarian().equalsIgnoreCase("FD")) {
             	udp.setLibertarian("Frequently Disagree");
@@ -602,6 +715,30 @@ public class RouteController {
         }
         catch (Exception e){
         	System.out.println(e);
+            System.out.println("Error");
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+        }
+    }
+    
+    @CrossOrigin(origins = "*")
+    @PostMapping("api/finalsubmit")
+    public ResponseEntity<?>  finalsubmit(HttpServletRequest request, @RequestBody UserDetailsBean userdetails1) {
+        try {
+        	String email = cookieService.getEmailId(userdetails1.getToken());
+            
+            TabMapping tabs = mappingRepo.findByEmailId(email);
+            tabs.setTab6("true");
+            mappingRepo.saveAndFlush(tabs);
+            
+            ResponseData responseData = new ResponseData();
+	        responseData.setStatus("ok");
+	        responseData.setToken(userdetails1.getToken());
+	        responseData.setMsg("Form Successfully Submitted");
+	        
+	        // Return response with status OK and response object
+	        return ResponseEntity.ok(responseData);
+        }
+        catch (Exception e){
             System.out.println("Error");
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
         }
