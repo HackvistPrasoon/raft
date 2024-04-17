@@ -46,7 +46,12 @@ public class UserDetailsPreview {
     private LocalDateTime createdAt;
     private String token;
     private Long radio_feel;
+    private String radio_feel_string;
     private Long radio_comfort;
+    private String radio_comfort_string;
     private Long radio_pov;
+    private String radio_pov_string;
     private Long radio_prespective;
+    private String radio_prespective_string;
+    private String status;
 }
