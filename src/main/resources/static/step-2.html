@@ -145,7 +145,7 @@ for (const step in response) {
         lists += `<a href="${href}?token=${token}" ${ariaCurrent} class="link-block w-inline-block ${activeClass}"><img src="${img}" loading="lazy" alt="" class="image-6"></a>`;
     }
 }
-//$('.div-block-3').html( lists);
+$('.div-block-3').html( lists);
 
                  $('.success-message').show();
                  $('.error-message').hide();
@@ -189,8 +189,8 @@ for (const step in response) {
                     // Handle success
                      if(response.status==='ok'){
                     	if(response.token===token){
-                    		//var redirectUrl = "https://raftstoragesite.z13.web.core.windows.net/step-3.html?token=" + response.token;
-                    		var redirectUrl = "http://localhost:8080/step-3.html?token=" + response.token;
+                    		var redirectUrl = "https://raftstoragesite.z13.web.core.windows.net/step-3.html?token=" + response.token;
+                    		//var redirectUrl = "http://localhost:8080/step-3.html?token=" + response.token;
                     		// Redirect to the new URL
                     		window.location.href = redirectUrl;
                     	}
@@ -281,8 +281,8 @@ for (const step in response) {
     
             $.ajax({
                 type: "POST",
+              //  url: "http://localhost:8080/api/"+api, 
                 url: "https://raftstoragesite.z13.web.core.windows.net/api/"+api,
-               // url: "http://localhost:8080/api/"+api, 
                 data: JSON.stringify(formData),
                 contentType: "application/json",
                 success: function(response) {
