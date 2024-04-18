@@ -43,8 +43,8 @@
              };
     	 $.ajax({
              type: "POST",
-            // url: "https://raftapp.azurewebsites.net/api/previewapp",
-             url: "http://localhost:8080/api/previewapp",
+             url: "https://raftapp.azurewebsites.net/api/previewapp",
+            // url: "http://localhost:8080/api/previewapp",
              contentType: "application/json",
              data: JSON.stringify(formData),
              success: function(response) {
@@ -276,8 +276,8 @@
                              };
                     	 $.ajax({
                              type: "POST",
-                             url: "http://localhost:8080/stepList",
-                           // url: "https://raftstoragesite.z13.web.core.windows.net/stepList",
+                           //  url: "http://localhost:8080/stepList",
+                            url: "https://raftstoragesite.z13.web.core.windows.net/stepList",
                              data: JSON.stringify(formData),
                              contentType: "application/json",
                              success: function(response) {
@@ -353,7 +353,8 @@
 
     $.ajax({
         type: "POST",
-        url: "http://localhost:8080/api/finalsubmit",
+	url: "https://raftstoragesite.z13.web.core.windows.net/api/finalsubmit",
+       // url: "http://localhost:8080/api/finalsubmit",
         data: JSON.stringify(formData),
         contentType: "application/json",
         success: function(response) {
