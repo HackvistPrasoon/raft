@@ -41,19 +41,19 @@
           <form id="wf-form-River-Selection" name="wf-form-River-Selection" data-name="River Selection" method="post" class="form-2 step-5" data-wf-page-id="660e33fe4c967b93d902efcf" data-wf-element-id="c6cbdfbd-2ae9-5684-82f8-b2d44091cc48">
             <h5>Select One</h5>
             <div id="w-node-ead57eca-fc1f-b496-1222-94e52a5e68e0-d902efcf" class="div-block-11"><label class="radio-button-field-3 w-radio">
-                <div class="w-form-formradioinput w-form-formradioinput--inputType-custom radio-button w-radio-input"></div><input type="radio" name="Partner_Pair" id="Pair" data-name="Partner_Pair" required="" style="opacity:0;position:absolute;z-index:-1" value="Pair"><span class="radio-button-label-3 w-form-label" for="Pair">Pair me up with someone from a different ideological perspective.</span>
+                <div class="w-form-formradioinput w-form-formradioinput--inputType-custom radio-button w-radio-input" id="check_Pair"></div><input type="radio" name="Partner_Pair" id="Pair" data-name="Partner_Pair" required="" style="opacity:0;position:absolute;z-index:-1" value="Pair"><span class="radio-button-label-3 w-form-label" for="Pair">Pair me up with someone from a different ideological perspective.</span>
               </label>
             <!--   <textarea class="textarea-2 w-input" partner="True" maxlength="5000" name="Pair-Prespective" data-name="Pair Prespective" placeholder="Tell us how their ideological perspective is different from yours" id="Pair-Prespective"></textarea>  --> 
               </div>
             <div id="w-node-_79eb3f5e-6b38-a6f6-aeec-07b7238925f3-d902efcf"><label class="radio-button-field-3 w-radio">
-                <div class="w-form-formradioinput w-form-formradioinput--inputType-custom radio-button w-radio-input"></div><input type="radio" name="Partner_Pair" id="Self" data-name="Partner_Pair" required="" style="opacity:0;position:absolute;z-index:-1" value="Self"><span class="radio-button-label-3 w-form-label" for="Self">I have already identified someone to participate in my adventure with me. Their name and email address is below. Understand they will have to submit an application as well.</span>
+                <div class="w-form-formradioinput w-form-formradioinput--inputType-custom radio-button w-radio-input" id="check_Self"></div><input type="radio" name="Partner_Pair" id="Self" data-name="Partner_Pair" required="" style="opacity:0;position:absolute;z-index:-1" value="Self"><span class="radio-button-label-3 w-form-label" for="Self">I have already identified someone to participate in my adventure with me. Their name and email address is below. Understand they will have to submit an application as well.</span>
               </label>
               <div id="Self_div">
                 <div class="div-block-12"><input class="text-field-3 w-input" maxlength="256" name="P_F_Name" data-name="P_F_Name" placeholder="First Name" type="text" id="P_F_Name"><input class="text-field-3 w-input" maxlength="256" name="P_L_Name" data-name="P_L_Name" placeholder="Last Name" type="text" id="P_L_Name"></div><input class="text-field-3 w-input" maxlength="256" name="P_Email" data-name="P_Email" placeholder="Email Address" type="email" id="P_Email">
               </div>
             </div>
             <div class="div-block-7">
-              <a href="step-4.html" class="button submit-button left w-inline-block"><img src="images/Слой_1Back_arrow.svg" loading="lazy" alt="" class="image-7">
+              <a href="#" onclick="back_button('step-4.html')" class="button submit-button left w-inline-block"><img src="images/Слой_1Back_arrow.svg" loading="lazy" alt="" class="image-7">
                 <div id="w-node-c6cbdfbd-2ae9-5684-82f8-b2d44091cc61-d902efcf" class="text-block-7">Back</div>
               </a>
               <!-- <a id="w-node-c6cbdfbd-2ae9-5684-82f8-b2d44091cc63-d902efcf" href="preview-page.html" class="button submit-button left w-inline-block">
@@ -91,8 +91,8 @@
            };
   	 $.ajax({
            type: "POST",
-          // url: "http://localhost:8080/stepList",
-          url: "https://raftapp.azurewebsites.net/stepList",
+         //  url: "http://localhost:8080/stepList",
+          url: "https://raftstoragesite.z13.web.core.windows.net/stepList",
            data: JSON.stringify(formData),
            contentType: "application/json",
            success: function(response) {
@@ -187,12 +187,14 @@ $('.div-block-3').html( lists);
         var emailAddress;
         if (pairRadioButton.checked) {
         	outside_my_bubble = pairRadioButton.value;
+        	console.log(outside_my_bubble);
         	firstName = null;
             lastName = null;
             emailAddress = null;
         } else if (selfRadioButton.checked) {
         	// Get the value of the checkbox
         	 outside_my_bubble = selfRadioButton.value;
+        	 console.log(outside_my_bubble);
         	  firstName = $('#P_F_Name').val();
               lastName = $('#P_L_Name').val();
               emailAddress = $('#P_Email').val();
@@ -215,8 +217,8 @@ $('.div-block-3').html( lists);
   
           $.ajax({
               type: "POST",
-              url: "https://raftapp.azurewebsites.net/api/step5",
-              //url: "http://localhost:8080/api/step5",
+              url: "https://raftstoragesite.z13.web.core.windows.net/api/step5",
+             // url: "http://localhost:8080/api/step5",
               data: JSON.stringify(formData),
               contentType: "application/json",
               success: function(response) {
@@ -225,7 +227,7 @@ $('.div-block-3').html( lists);
                     if(response.status==='ok'){
                   	if(response.token===token){
                   		//var redirectUrl = "http://localhost:8080/preview-page.html?token=" + response.token;
-						var redirectUrl = "https://raftapp.azurewebsites.net/preview-page.html?token=" + response.token;
+				var redirectUrl = "https://raftstoragesite.z13.web.core.windows.net/preview-page.html?token=" + response.token;
                   		// Redirect to the new URL
                   		window.location.href = redirectUrl;
                   	}
@@ -242,6 +244,7 @@ $('.div-block-3').html( lists);
               }
           });
       });
+      fill(token,'stepfive'); 
   });
     document.addEventListener("DOMContentLoaded", function() {
         // Get references to the radio buttons and the elements to show/hide
@@ -274,6 +277,62 @@ $('.div-block-3').html( lists);
         //pairPerspectiveTextarea.style.display = "none";
         partnerDetailsSection.style.display = "none";
     });
+    function back_button(url){
+    	var urlParams = new URLSearchParams(window.location.search);
+    	console.log(urlParams);
+        var token = urlParams.get('token');
+    	var redirectUrl = url+"?token=" +token;
+		// Redirect to the new URL
+		console.log(redirectUrl)
+		window.location.href = redirectUrl;
+    }
+    
+    function fill(token,api){
+      	 var formData = {
+                  
+                   "token" : token
+               };
+       
+               $.ajax({
+                   type: "POST",
+                  // url: "http://localhost:8080/api/"+api, 
+                   url: "https://raftstoragesite.z13.web.core.windows.net/api/"+api,
+                   data: JSON.stringify(formData),
+                   contentType: "application/json",
+                   success: function(response) {
+                       // Handle success
+                   console.log("Success:", response);
+                             var pair_self= response.outside_my_bubble;
+                            
+                             if (pair_self && $(`#${pair_self}`).length > 0) {
+                             	 $(`#${pair_self}`).prop('checked', true);
+                                 $(`#check_${pair_self}`).addClass('w--redirected-checked');
+                                 
+                             }
+                             
+                             if(pair_self='Self'){
+                             $('#P_F_Name').val(response.omb_first_name);
+                             $('#P_L_Name').val(response.omb_last_name);
+                             $('#P_Email').val(response.omb_emailid);
+                             $(`#Self_div`).show();
+
+                             }else{
+                            	  $('#P_F_Name').val('');
+                                  $('#P_L_Name').val('');
+                                  $('#P_Email').val(''); 
+                             }
+                       console.log("Success:", response);
+                       $('.success-message').show();
+                       $('.error-message').hide();
+                   },
+                   error: function(xhr, status, error) {
+                       // Handle errors
+                       console.error("Error:", error);
+                       $('.success-message').hide();
+                       $('.error-message').show();
+                   }
+               });
+      }
 </script>
 </body>
 </html>
