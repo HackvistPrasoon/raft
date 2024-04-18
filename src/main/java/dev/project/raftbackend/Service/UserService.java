@@ -17,9 +17,9 @@ public class UserService {
 
 	public Userdetails findUserByEmail(String emailid) {
 
-		System.out.println("user repo is called");
+		
 		Userdetails usd = userRepository.findByEmailid(emailid);
-		System.out.println("user from db"+usd.toString());
+		
 		return usd;
 	}
 }
