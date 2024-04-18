@@ -277,7 +277,7 @@
                     	 $.ajax({
                              type: "POST",
                            //  url: "http://localhost:8080/stepList",
-                            url: "https://raftstoragesite.z13.web.core.windows.net/stepList",
+                            url: "https://raftapp.azurewebsites.net/stepList",
                              data: JSON.stringify(formData),
                              contentType: "application/json",
                              success: function(response) {
@@ -353,7 +353,7 @@
 
     $.ajax({
         type: "POST",
-	url: "https://raftstoragesite.z13.web.core.windows.net/api/finalsubmit",
+	url: "https://raftapp.azurewebsites.net/api/finalsubmit",
        // url: "http://localhost:8080/api/finalsubmit",
         data: JSON.stringify(formData),
         contentType: "application/json",
