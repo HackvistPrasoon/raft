@@ -229,8 +229,8 @@ $('.div-block-3').html( lists);
                     // Handle success
                      if(response.status==='ok'){
                     	if(response.token===token){
-                    		var redirectUrl = "http://localhost:8080/step-5.html?token=" + response.token;
-							//var redirectUrl = "https://raftstoragesite.z13.web.core.windows.net/step-5.html?token=" + response.token;
+                    		//var redirectUrl = "http://localhost:8080/step-5.html?token=" + response.token;
+				var redirectUrl = "https://raftstoragesite.z13.web.core.windows.net/step-5.html?token=" + response.token;
                     		// Redirect to the new URL
                     		window.location.href = redirectUrl;
                     	}
