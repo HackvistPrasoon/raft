@@ -76,7 +76,7 @@
               </div>
             </div>
             <div class="div-block-7">
-              <a href="step-3.html" class="button submit-button left w-inline-block"><img src="images/Слой_1Back_arrow.svg" loading="lazy" alt="" class="image-7">
+              <a href="#" onclick="back_button('step-3.html')" class="button submit-button left w-inline-block"><img src="images/Слой_1Back_arrow.svg" loading="lazy" alt="" class="image-7">
                 <div id="w-node-c180f8ad-adf9-4d0a-a0ab-d96e818ef710-53655fdf" class="text-block-7">Back</div>
               </a>
               <!-- <a id="w-node-c180f8ad-adf9-4d0a-a0ab-d96e818ef712-53655fdf" href="step-5.html" class="button submit-button left w-inline-block">
@@ -113,8 +113,8 @@
              };
     	 $.ajax({
              type: "POST",
-            // url: "http://localhost:8080/stepList",
-            url: "https://raftapp.azurewebsites.net/stepList",
+           //  url: "http://localhost:8080/stepList",
+            url: "https://raftstoragesite.z13.web.core.windows.net/stepList",
              data: JSON.stringify(formData),
              contentType: "application/json",
              success: function(response) {
@@ -220,8 +220,8 @@ $('.div-block-3').html( lists);
     
             $.ajax({
                 type: "POST",
-               url: "https://raftapp.azurewebsites.net/api/step4",
-                //url: "http://localhost:8080/api/step4",
+               url: "https://raftstoragesite.z13.web.core.windows.net/api/step4",
+               // url: "http://localhost:8080/api/step4",
                 data: JSON.stringify(formData),
                 contentType: "application/json",
                 success: function(response) {
@@ -229,8 +229,8 @@ $('.div-block-3').html( lists);
                     // Handle success
                      if(response.status==='ok'){
                     	if(response.token===token){
-                    		//var redirectUrl = "http://localhost:8080/step-5.html?token=" + response.token;
-							var redirectUrl = "https://raftapp.azurewebsites.net/step-5.html?token=" + response.token;
+                    		var redirectUrl = "http://localhost:8080/step-5.html?token=" + response.token;
+							//var redirectUrl = "https://raftstoragesite.z13.web.core.windows.net/step-5.html?token=" + response.token;
                     		// Redirect to the new URL
                     		window.location.href = redirectUrl;
                     	}
@@ -254,7 +254,7 @@ $('.div-block-3').html( lists);
         $.ajax({
             type: "GET",
             url: "https://raftapp.azurewebsites.net/agelist",
-           // url: "http://localhost:8080/agelist",
+            //url: "http://localhost:8080/agelist",
             contentType: "application/json",
             success: function(response) {
             	 // Select the <select> element by its ID
@@ -288,7 +288,7 @@ $('.div-block-3').html( lists);
         $.ajax({
             type: "GET",
             url: "https://raftapp.azurewebsites.net/genderlist",
-            //url: "http://localhost:8080/genderlist",
+           // url: "http://localhost:8080/genderlist",
             contentType: "application/json",
             success: function(response) {
             	 // Select the <select> element by its ID
@@ -321,7 +321,7 @@ $('.div-block-3').html( lists);
         $.ajax({
             type: "GET",
             url: "https://raftapp.azurewebsites.net/educationlist",
-          //  url: "http://localhost:8080/educationlist",
+            //url: "http://localhost:8080/educationlist",
             contentType: "application/json",
             success: function(response) {
             	 // Select the <select> element by its ID
@@ -356,7 +356,7 @@ $('.div-block-3').html( lists);
         $.ajax({
             type: "GET",
             url: "https://raftapp.azurewebsites.net/ethniclist",
-            //url: "http://localhost:8080/ethniclist",
+           // url: "http://localhost:8080/ethniclist",
             contentType: "application/json",
             success: function(response) {
             	// Select the <select> element by its ID
@@ -420,11 +420,61 @@ $('.div-block-3').html( lists);
                 $('.error-message').show();
             }
         });
-        
+        fill(token,'stepfour'); 
     });
     
+    function back_button(url){
+    	var urlParams = new URLSearchParams(window.location.search);
+    	console.log(urlParams);
+        var token = urlParams.get('token');
+    	var redirectUrl = url+"?token=" +token;
+		// Redirect to the new URL
+		console.log(redirectUrl)
+		window.location.href = redirectUrl;
+    }
+    function fill(token,api){
+   	 var formData = {
+               
+                "token" : token
+            };
     
-   
+            $.ajax({
+                type: "POST",
+                url: "https://raftapp.azurewebsites.net/api/"+api,
+               // url: "http://localhost:8080/api/"+api, 
+                data: JSON.stringify(formData),
+                contentType: "application/json",
+                success: function(response) {
+                    // Handle success
+                console.log("Success:", response);
+                var ethnic_id = response.ethnic_id;
+                var gender_id = response.gender_id;
+                var age_id = response.age_id;
+                var education_id = response.education_id;
+                var location_id = response.location_id;
+               /*  $('#Ethnicity').val(ethnic_id);
+                $('#Gender').val(gender_id);
+                $('#Age').val(age_id);
+                $('#Education').val(education_id);
+                $('#Location').val(location_id); */
+
+                $('#Ethnicity').val(ethnic_id).change();
+                $('#Gender').val(gender_id).change();
+                $('#Age').val(age_id).change();
+                $('#Education').val(education_id).change();
+                $('#Location').val(location_id).change();
+                    console.log("Success:", response);
+                    $('.success-message').show();
+                    $('.error-message').hide();
+                },
+                error: function(xhr, status, error) {
+                    // Handle errors
+                    console.error("Error:", error);
+                    $('.success-message').hide();
+                    $('.error-message').show();
+                }
+            });
+   }
        </script>
 </body>
 </html>
