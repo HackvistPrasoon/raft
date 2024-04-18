@@ -57,10 +57,10 @@ public class CookieService {
     public String getEmailId(String token) {
     	
     	 if(!isTokenExpired(token)) {
-    		 System.out.println(token);
+    		
              Base64.Decoder decoder = Base64.getUrlDecoder();
              String[] chunks = token.split("\\.");
-             System.out.println(chunks[0]+"  ---  "+chunks[1]);
+            
              String payload = new String((decoder.decode(chunks[1])));
              JSONParser parser = new JSONParser();
              try {
@@ -76,18 +76,18 @@ public class CookieService {
 
     public static boolean isTokenExpired(String token) {
         try {
-            System.out.println(SECRET_KEY);
+          
             // Parse the token
             SecretKey key = Keys.hmacShaKeyFor(SECRET_KEY.getBytes());
-            System.out.println(key);
+         
             Jws<Claims> claimsJws = Jwts.parserBuilder()
                     .setSigningKey(key)
                     .build()
                     .parseClaimsJws(token);
-            System.out.println(claimsJws);
+         
             // Get the expiration time from the token
             Date expiration = claimsJws.getBody().getExpiration();
-            System.out.println(expiration);
+         
 
             // Compare with the current time
             Instant now = Instant.now();
@@ -99,7 +99,7 @@ public class CookieService {
 
     }
     public static ResponseEntity<Userdetails> getUserByEmail(String emailid) {
-        System.out.println("This email ID has reached Entity Function "+emailid);
+      
         Userdetails userDetails = userService.findUserByEmail(emailid);
         if (userDetails != null) {
             return ResponseEntity.ok().body(userDetails);
