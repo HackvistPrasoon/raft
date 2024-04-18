@@ -448,7 +448,7 @@
     	 $.ajax({
              type: "POST",
             // url: "http://localhost:8080/stepList",
-            url: "https://raftstoragesite.z13.web.core.windows.net/stepList",
+            url: "https://raftapp.azurewebsites.net/stepList",
              data: JSON.stringify(formData),
              contentType: "application/json",
              success: function(response) {
@@ -551,7 +551,7 @@ $('.div-block-3').html( lists);
     
             $.ajax({
                 type: "POST",
-                url: "https://raftstoragesite.z13.web.core.windows.net/api/step3",
+                url: "https://raftapp.azurewebsites.net/api/step3",
                // url: "http://localhost:8080/api/step3",
                 data: JSON.stringify(formData),
                 contentType: "application/json",
@@ -560,7 +560,7 @@ $('.div-block-3').html( lists);
                     if(response.status==='ok'){
                     	if(response.token===token){
                     		//var redirectUrl = "http://localhost:8080/step-4.html?token=" + response.token;
-							var redirectUrl = "https://raftstoragesite.z13.web.core.windows.net/step-4.html?token=" + response.token;
+							var redirectUrl = "https://raftapp.azurewebsites.net/step-4.html?token=" + response.token;
                     		// Redirect to the new URL
                     		window.location.href = redirectUrl;
                     	}
@@ -598,7 +598,7 @@ $('.div-block-3').html( lists);
             $.ajax({
                 type: "POST",
                 //url: "http://localhost:8080/api/"+api, 
-                url: "https://raftstoragesite.z13.web.core.windows.net/api/"+api,
+                url: "https://raftapp.azurewebsites.net/api/"+api,
                 data: JSON.stringify(formData),
                 contentType: "application/json",
                 success: function(response) {
