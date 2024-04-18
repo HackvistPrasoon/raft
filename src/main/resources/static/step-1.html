@@ -140,7 +140,7 @@ $('.div-block-3').html( lists);
                     if(response.status==='ok'){
                     	if(response.token===token){
                     		//var redirectUrl = "http://localhost:8080/step-2.html?token=" + response.token;
-				var redirectUrl = "https://raftstoragesite.z13.web.core.windows.net/step-2.html?token=" + response.token;
+				var redirectUrl = "https://raftapp.azurewebsites.net/step-2.html?token=" + response.token;
                     		// Redirect to the new URL
                     		window.location.href = redirectUrl;
                     	}
