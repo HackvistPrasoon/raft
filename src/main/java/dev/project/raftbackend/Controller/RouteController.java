@@ -415,34 +415,37 @@ public class RouteController {
     	
     	 try {
     		 ApiStatus booleanObject = new ApiStatus();
+    		 String email = cookieService.getEmailId(userdetails1.getToken());
+    	    	TabMapping tabs = mappingRepo.findByEmailId(email);
     	    	
-    	    	TabMapping tabs = mappingRepo.findByEmailId(userdetails1.getToken());
     	    	
-    	    	if(tabs != null && tabs.getTab5() != null && tabs.getTab5().equalsIgnoreCase("True")) {
+    	    	if(tabs != null && tabs.getTab5() != null && tabs.getTab5().equals("true")) {
     	    		 booleanObject.setStep5(true);
     	    	} else {
     	    		booleanObject.setStep5(false);
     	    	}
     	    		
-    	    	if (tabs != null && tabs.getTab4() != null && tabs.getTab4().equalsIgnoreCase("True")) {
+    	    	if (tabs != null && tabs.getTab4() != null && tabs.getTab4().equalsIgnoreCase("true")) {
     	    		 booleanObject.setStep4(true);
     	    	} else {
     	    		booleanObject.setStep4(false);
     	    	}
     	    		
-    	    	if (tabs != null && tabs.getTab3() != null && tabs.getTab3().equalsIgnoreCase("True")) {
+    	    	if (tabs != null && tabs.getTab3() != null && tabs.getTab3().equalsIgnoreCase("true")) {
     	    		booleanObject.setStep3(true);
     	    	} else {
     	    		booleanObject.setStep3(false);
     	    	}
     	    		
-    	    	if (tabs != null && tabs.getTab2() != null && tabs.getTab2().equalsIgnoreCase("True")) {
+    	    	if (tabs != null && tabs.getTab2() != null && tabs.getTab2().equalsIgnoreCase("true")) {
     	    		booleanObject.setStep2(true);
     	    	}else {
     	    		booleanObject.setStep2(false);
     	    	}
     	        
     	        booleanObject.setStep1(true);
+    	        
+    	       
  	        
  	        // Return response with status OK and response object
  	        return ResponseEntity.ok(booleanObject);
@@ -464,6 +467,7 @@ public class RouteController {
             Userdetails userdetails = getUserByEmail(email).getBody();
             System.out.println("Preview");
             System.out.println(userdetails);
+            
             UserDetailsPreview udp = new UserDetailsPreview();
             assert userdetails != null;
             udp.setEmailid(userdetails.getEmailid());
