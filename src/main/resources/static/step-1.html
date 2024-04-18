@@ -65,8 +65,8 @@
              };
     	 $.ajax({
              type: "POST",
-            // url: "http://localhost:8080/stepList",
-             url: "https://raftstoragesite.z13.web.core.windows.net/stepList",
+             url: "http://localhost:8080/stepList",
+            // url: "https://raftstoragesite.z13.web.core.windows.net/stepList",
              data: JSON.stringify(formData),
              contentType: "application/json",
              success: function(response) {
@@ -131,8 +131,8 @@ $('.div-block-3').html( lists);
     
             $.ajax({
                 type: "POST",
-                url: "https://raftstoragesite.z13.web.core.windows.net/api/step1",
-               // url: "http://localhost:8080/api/step1", 
+               // url: "https://raftstoragesite.z13.web.core.windows.net/api/step1",
+                url: "http://localhost:8080/api/step1", 
                 data: JSON.stringify(formData),
                 contentType: "application/json",
                 success: function(response) {
@@ -167,8 +167,7 @@ $('.div-block-3').html( lists);
      
              $.ajax({
                  type: "POST",
-                 url: "https://raftstoragesite.z13.web.core.windows.net/api/"+api,
-                // url: "http://localhost:8080/api/"+api, 
+                 url: "http://localhost:8080/api/"+api, 
                  data: JSON.stringify(formData),
                  contentType: "application/json",
                  success: function(response) {
