@@ -23,7 +23,7 @@
   <section class="section-2 step-2">
     <div class="w-layout-blockcontainer container-2 w-container">
       <div class="div-block-2"><img src="images/RAFT-LogoLogo.svg" loading="lazy" alt="" class="image">
-        <h5 id="w-node-_1e822621-9833-f2b8-bcc6-aae3e0686567-df2646c9" class="heading-3">Email: <span class="text-span">currentuser@email.com</span></h5>
+        <h5 id="w-node-_1e822621-9833-f2b8-bcc6-aae3e0686567-df2646c9" class="heading-3">Email: <span class="text-span user_email">currentuser@email.com</span></h5>
         <a href="https://raftapp.azurewebsites.net/" class="w-inline-block"><img src="images/VectorLogout.svg" loading="lazy" alt="" class="image-2"></a>
       </div>
       <div class="div-block-3">
@@ -299,7 +299,7 @@ $('.div-block-3').html( lists);
                 	$(`#redio_class_${riverId}`).addClass('w--redirected-checked');
 
                 }
-
+                    $('.user_email').html(response.emailid);
                     console.log("Success:", response);
                     $('.success-message').show();
                     $('.error-message').hide();
