@@ -23,7 +23,7 @@
   <section class="section-2 step-4">
     <div class="w-layout-blockcontainer container-2 w-container">
       <div class="div-block-2"><img src="images/RAFT-LogoLogo.svg" loading="lazy" alt="" class="image">
-        <h5 id="w-node-c180f8ad-adf9-4d0a-a0ab-d96e818ef500-53655fdf" class="heading-3">Email: <span class="text-span">currentuser@email.com</span></h5>
+        <h5 id="w-node-c180f8ad-adf9-4d0a-a0ab-d96e818ef500-53655fdf" class="heading-3">Email: <span class="text-span user_email">currentuser@email.com</span></h5>
         <a href="https://raftapp.azurewebsites.net/" class="w-inline-block"><img src="images/VectorLogout.svg" loading="lazy" alt="" class="image-2"></a>
       </div>
       <div class="div-block-3">
@@ -230,7 +230,7 @@ $('.div-block-3').html( lists);
                      if(response.status==='ok'){
                     	if(response.token===token){
                     		//var redirectUrl = "http://localhost:8080/step-5.html?token=" + response.token;
-				var redirectUrl = "https://raftapp.azurewebsites.net/step-5.html?token=" + response.token;
+							var redirectUrl = "https://raftapp.azurewebsites.net/step-5.html?token=" + response.token;
                     		// Redirect to the new URL
                     		window.location.href = redirectUrl;
                     	}
@@ -254,7 +254,7 @@ $('.div-block-3').html( lists);
         $.ajax({
             type: "GET",
             url: "https://raftapp.azurewebsites.net/agelist",
-            //url: "http://localhost:8080/agelist",
+           // url: "http://localhost:8080/agelist",
             contentType: "application/json",
             success: function(response) {
             	 // Select the <select> element by its ID
@@ -321,7 +321,7 @@ $('.div-block-3').html( lists);
         $.ajax({
             type: "GET",
             url: "https://raftapp.azurewebsites.net/educationlist",
-            //url: "http://localhost:8080/educationlist",
+           // url: "http://localhost:8080/educationlist",
             contentType: "application/json",
             success: function(response) {
             	 // Select the <select> element by its ID
@@ -440,8 +440,8 @@ $('.div-block-3').html( lists);
     
             $.ajax({
                 type: "POST",
-                url: "https://raftapp.azurewebsites.net/api/"+api,
                // url: "http://localhost:8080/api/"+api, 
+                  url: "https://raftapp.azurewebsites.net/api/"+api,
                 data: JSON.stringify(formData),
                 contentType: "application/json",
                 success: function(response) {
@@ -463,6 +463,9 @@ $('.div-block-3').html( lists);
                 $('#Age').val(age_id).change();
                 $('#Education').val(education_id).change();
                 $('#Location').val(location_id).change();
+                
+                $('.user_email').html(response.emailid);
+
                     console.log("Success:", response);
                     $('.success-message').show();
                     $('.error-message').hide();
