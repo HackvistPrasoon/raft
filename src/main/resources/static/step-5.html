@@ -23,7 +23,7 @@
   <section class="section-2 step-5">
     <div class="w-layout-blockcontainer container-2 w-container">
       <div class="div-block-2"><img src="images/RAFT-LogoLogo.svg" loading="lazy" alt="" class="image">
-        <h5 id="w-node-c6cbdfbd-2ae9-5684-82f8-b2d44091cc32-d902efcf" class="heading-3">Email: <span class="text-span">currentuser@email.com</span></h5>
+        <h5 id="w-node-c6cbdfbd-2ae9-5684-82f8-b2d44091cc32-d902efcf" class="heading-3">Email: <span class="text-span user_email">currentuser@email.com</span></h5>
         <a href="https://raftapp.azurewebsites.net/" class="w-inline-block"><img src="images/VectorLogout.svg" loading="lazy" alt="" class="image-2"></a>
       </div>
       <div class="div-block-3">
@@ -218,7 +218,7 @@ $('.div-block-3').html( lists);
           $.ajax({
               type: "POST",
               url: "https://raftapp.azurewebsites.net/api/step5",
-             // url: "http://localhost:8080/api/step5",
+            //  url: "http://localhost:8080/api/step5",
               data: JSON.stringify(formData),
               contentType: "application/json",
               success: function(response) {
@@ -227,7 +227,7 @@ $('.div-block-3').html( lists);
                     if(response.status==='ok'){
                   	if(response.token===token){
                   		//var redirectUrl = "http://localhost:8080/preview-page.html?token=" + response.token;
-				var redirectUrl = "https://raftapp.azurewebsites.net/preview-page.html?token=" + response.token;
+						var redirectUrl = "https://raftapp.azurewebsites.net/preview-page.html?token=" + response.token;
                   		// Redirect to the new URL
                   		window.location.href = redirectUrl;
                   	}
@@ -296,7 +296,7 @@ $('.div-block-3').html( lists);
                $.ajax({
                    type: "POST",
                   // url: "http://localhost:8080/api/"+api, 
-                   url: "https://raftapp.azurewebsites.net/api/"+api,
+                     url: "https://raftapp.azurewebsites.net/api/"+api,
                    data: JSON.stringify(formData),
                    contentType: "application/json",
                    success: function(response) {
@@ -321,6 +321,8 @@ $('.div-block-3').html( lists);
                                   $('#P_L_Name').val('');
                                   $('#P_Email').val(''); 
                              }
+                             $('.user_email').html(response.emailid);
+
                        console.log("Success:", response);
                        $('.success-message').show();
                        $('.error-message').hide();
