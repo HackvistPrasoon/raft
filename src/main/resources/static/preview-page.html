@@ -44,7 +44,7 @@
     	 $.ajax({
              type: "POST",
              url: "https://raftapp.azurewebsites.net/api/previewapp",
-            // url: "http://localhost:8080/api/previewapp",
+           //  url: "http://localhost:8080/api/previewapp",
              contentType: "application/json",
              data: JSON.stringify(formData),
              success: function(response) {
@@ -267,10 +267,10 @@
                 	 // Set the dynamic HTML to a container element
                 	 $('.preview').html(dynamicHTML);
                 		var urlParams = new URLSearchParams(window.location.search);
-                    	
+                    	console.log(urlParams)
                         var token = urlParams.get('token');
                     	const currentPath = window.location.pathname;
-                    	
+                    	console.log(currentPath);
                     	 var formData = {
                                  "token" : token
                              };
@@ -353,8 +353,8 @@
 
     $.ajax({
         type: "POST",
-	url: "https://raftapp.azurewebsites.net/api/finalsubmit",
        // url: "http://localhost:8080/api/finalsubmit",
+        url: "https://raftapp.azurewebsites.net/api/finalsubmit",
         data: JSON.stringify(formData),
         contentType: "application/json",
         success: function(response) {
