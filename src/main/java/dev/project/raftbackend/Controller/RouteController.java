@@ -671,7 +671,7 @@ public class RouteController {
             
             if(userdetails.getRadio_comfort()<=3) {
             	udp.setRadio_comfort_string("Very Unfavourable");
-            } else if(userdetails.getRadio_comfort()>4 || userdetails.getRadio_comfort()<=7) {
+            } else if(userdetails.getRadio_comfort()>=4 || userdetails.getRadio_comfort()<=7) {
             	udp.setRadio_comfort_string("Neutral");
             }else {
             	udp.setRadio_comfort_string("Very Favourable");
@@ -681,7 +681,7 @@ public class RouteController {
             
             if(userdetails.getRadio_feel()<=3) {
             	udp.setRadio_feel_string("Very Unfavourable");
-            } else if(userdetails.getRadio_feel()>4 || userdetails.getRadio_feel()<=7) {
+            } else if(userdetails.getRadio_feel()>=4 || userdetails.getRadio_feel()<=7) {
             	udp.setRadio_feel_string("Neutral");
             }else {
             	udp.setRadio_feel_string("Very Favourable");
@@ -691,7 +691,7 @@ public class RouteController {
             
             if(userdetails.getRadio_pov()<=3) {
             	udp.setRadio_pov_string("Very Unfavourable");
-            } else if(userdetails.getRadio_pov()>4 || userdetails.getRadio_pov()<=7) {
+            } else if(userdetails.getRadio_pov()>=4 || userdetails.getRadio_pov()<=7) {
             	udp.setRadio_pov_string("Neutral");
             }else {
             	udp.setRadio_pov_string("Very Favourable");
@@ -701,7 +701,7 @@ public class RouteController {
             
             if(userdetails.getRadio_prespective()<=3) {
             	udp.setRadio_prespective_string("Very Unfavourable");
-            } else if(userdetails.getRadio_prespective()>4 || userdetails.getRadio_prespective()<=7) {
+            } else if(userdetails.getRadio_prespective()>=4 || userdetails.getRadio_prespective()<=7) {
             	udp.setRadio_prespective_string("Neutral");
             }else {
             	udp.setRadio_prespective_string("Very Favourable");
