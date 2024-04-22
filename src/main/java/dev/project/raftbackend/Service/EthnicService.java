@@ -25,5 +25,9 @@ private final EthnicRepo ethnicRepository ;
 	public Ethnic getEthnic(Long id) {
 		return ethnicRepository.getById(id);
 	}
+
+	public Boolean ifExist(Long id) {
+		return ethnicRepository.existsById(id);
+	}
 	
 }
