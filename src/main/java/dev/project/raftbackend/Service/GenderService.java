@@ -27,4 +27,8 @@ private final GenderRepo genderRepository ;
 		return genderRepository.getById(id);
 	}
 
+	public Boolean ifExist(Long id) {
+		return genderRepository.existsById(id);
+	}
+
 }
