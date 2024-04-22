@@ -246,8 +246,8 @@ if ((!riverChecked && !checkboxChecked) || (!riverChecked && !checkboxChecked)) 
         
         $.ajax({
             type: "GET",
-            //url: "https://raftapp.azurewebsites.net/riverlist",
-            url: "http://localhost:8080/riverlist",
+            url: "https://raftapp.azurewebsites.net/riverlist",
+            //url: "http://localhost:8080/riverlist",
             contentType: "application/json",
             success: function(response) {
             	// Variable to store HTML content
@@ -315,8 +315,8 @@ if ((!riverChecked && !checkboxChecked) || (!riverChecked && !checkboxChecked)) 
     
             $.ajax({
                 type: "POST",
-                url: "http://localhost:8080/api/"+api, 
-              //  url: "https://raftapp.azurewebsites.net/api/"+api,
+              //  url: "http://localhost:8080/api/"+api, 
+                url: "https://raftapp.azurewebsites.net/api/"+api,
                 data: JSON.stringify(formData),
                 contentType: "application/json",
                 success: function(response) {
