@@ -35,13 +35,22 @@ public class UserdetailsController {
         System.out.println(key);
 
         try {
+			ValidationClass vc = new ValidationClass();
+        	
+        	String result = vc.validateEmail(userdetails.getEmailid());
+        	
+        	if(result.equalsIgnoreCase("true")) {
+        	
 			 String clickableLink = "https://raftapp.azurewebsites.net/login/" + token; 
         	//  String clickableLink = "http://localhost:8080/login/" + token;
 
             mailService.sendMail(userdetails.getEmailid(), "Your Verification Link", clickableLink);
           //codeadded
             repo.save(userdetails);
-            System.out.println("Mail Sent Successfully!");
+            return "Login link has been sent your email account successfully";
+        	} else {
+        		return "false";
+        	}
 
         }
         catch (Exception e){
@@ -49,7 +58,7 @@ public class UserdetailsController {
             e.printStackTrace();
             return "Error";
         }
-        return "Login link has been sent your email account successfully";
+       
 
     }
 
