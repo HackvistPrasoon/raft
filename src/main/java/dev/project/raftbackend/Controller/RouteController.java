@@ -21,6 +21,7 @@ import dev.project.raftbackend.model.Location;
 import dev.project.raftbackend.model.Riverslist;
 import dev.project.raftbackend.model.TabMapping;
 import dev.project.raftbackend.model.Userdetails;
+import dev.project.raftbackend.validation.ValidationClass;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
@@ -190,15 +191,24 @@ public class RouteController {
     	
     	try {
 //        	System.out.println(token);
-        	System.out.println("page called");
-            System.out.println(request);
-            System.out.println(userdetails1);
+//        	System.out.println("page called");
+//            System.out.println(request);
+//            System.out.println(userdetails1);
             //System.out.println(cookieService.getCookieValue(request, "token"));
             String email = cookieService.getEmailId(userdetails1.getToken());
             System.out.println(email);
 
             Userdetails userdetails = getUserByEmail(email).getBody();
             System.out.println(userdetails);
+            
+            ValidationClass vc = new ValidationClass();
+        	
+        	String result = vc.validateStep1(userdetails1);
+            
+        	ResponseData responseData = new ResponseData();
+        	
+        	if(result.equalsIgnoreCase("true")) { 
+        		
             assert userdetails != null;
             userdetails.setFirst_name(userdetails1.getFirst_name());
             userdetails.setLast_name(userdetails1.getLast_name());
@@ -209,17 +219,25 @@ public class RouteController {
             tabs.setTab1("true");
             mappingRepo.saveAndFlush(tabs);
 			
-			ResponseData responseData = new ResponseData();
+			
 	        responseData.setStatus("ok");
 	        responseData.setToken(userdetails1.getToken());
+	        
+        	} else {
+        		
+    	        responseData.setStatus("not ok");
+    	        responseData.setMsg(result);
+    	        responseData.setToken(userdetails1.getToken());
+        		
+        	}
 	        
 	        // Return response with status OK and response object
 	        return ResponseEntity.ok(responseData);
 			
         }
         catch (Exception e){
-        	System.out.println("page Catch");
-            System.out.println(e);
+//        	System.out.println("page Catch");
+//            System.out.println(e);
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
         }
     }
@@ -234,14 +252,24 @@ public class RouteController {
     @PostMapping("api/step2")
     public ResponseEntity<?>  step2(HttpServletRequest request, @RequestBody UserDetailsBean userdetails1) {
         try {
-        	System.out.println("Step 2");
+//        	System.out.println("Step 2");
             String email = cookieService.getEmailId(userdetails1.getToken());
             Userdetails userdetails = getUserByEmail(email).getBody();
-            System.out.println(userdetails);
+//            System.out.println(userdetails);
+            
+            ValidationClass vc = new ValidationClass();
+        	
+        	String result = vc.validateStep2(userdetails1);
+            
+        	ResponseData responseData = new ResponseData();
+        	
+        	if(result.equalsIgnoreCase("true")) {  
+            
+            
             assert userdetails != null;
             userdetails.setRiver_id(userdetails1.getRiver_id());
 
-            System.out.println("After setting river id"+userdetails);
+//            System.out.println("After setting river id"+userdetails);
 
             repo.saveAndFlush(userdetails);
             
@@ -249,16 +277,24 @@ public class RouteController {
             tabs.setTab2("true");
             mappingRepo.saveAndFlush(tabs);
             
-            ResponseData responseData = new ResponseData();
+           
 	        responseData.setStatus("ok");
 	        responseData.setToken(userdetails1.getToken());
+	        
+        	} else {
+        		
+    	        responseData.setStatus("not ok");
+    	        responseData.setMsg(result);
+    	        responseData.setToken(userdetails1.getToken());
+        		
+        	}
 	        
 	        // Return response with status OK and response object
 	        return ResponseEntity.ok(responseData);
         }
         catch (Exception e){
-            System.out.println("Error");
-            System.out.println(e);
+//            System.out.println("Error");
+//            System.out.println(e);
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
         }
     }
@@ -269,7 +305,16 @@ public class RouteController {
         try {
         	String email = cookieService.getEmailId(userdetails1.getToken());
             Userdetails userdetails = getUserByEmail(email).getBody();
-            System.out.println(userdetails);
+            //System.out.println(userdetails);
+            
+            ValidationClass vc = new ValidationClass();
+        	
+        	String result = vc.validateStep3(userdetails1);
+            
+        	ResponseData responseData = new ResponseData();
+        	
+        	if(result.equalsIgnoreCase("true")) {  
+            
             assert userdetails != null;
             //First Row
             userdetails.setConservative(userdetails1.getConservative());
@@ -303,9 +348,17 @@ public class RouteController {
             tabs.setTab3("true");
             mappingRepo.saveAndFlush(tabs);
             
-            ResponseData responseData = new ResponseData();
+          
 	        responseData.setStatus("ok");
 	        responseData.setToken(userdetails1.getToken());
+	        
+        	} else {
+        		
+    	        responseData.setStatus("not ok");
+    	        responseData.setMsg(result);
+    	        responseData.setToken(userdetails1.getToken());
+        		
+        	}
 	        
 	        // Return response with status OK and response object
 	        return ResponseEntity.ok(responseData);
@@ -348,7 +401,17 @@ public class RouteController {
         try {
         	String email = cookieService.getEmailId(userdetails1.getToken());
             Userdetails userdetails = getUserByEmail(email).getBody();
-            System.out.println(userdetails);
+         //   System.out.println(userdetails);
+            
+            ValidationClass vc = new ValidationClass();
+        	
+        	String result = vc.validateStep4(userdetails1);
+            
+        	ResponseData responseData = new ResponseData();
+        	
+        	if(result.equalsIgnoreCase("true")) { 
+            
+            
             assert userdetails != null;
             userdetails.setEthnic_id(userdetails1.getEthnic_id());
             userdetails.setGender_id(userdetails1.getGender_id());
@@ -362,9 +425,17 @@ public class RouteController {
             tabs.setTab4("true");
             mappingRepo.saveAndFlush(tabs);
             
-            ResponseData responseData = new ResponseData();
+           
 	        responseData.setStatus("ok");
 	        responseData.setToken(userdetails1.getToken());
+	        
+        	} else {
+        		
+    	        responseData.setStatus("not ok");
+    	        responseData.setMsg(result);
+    	        responseData.setToken(userdetails1.getToken());
+        		
+        	}
 	        
 	        // Return response with status OK and response object
 	        return ResponseEntity.ok(responseData);
@@ -383,6 +454,15 @@ public class RouteController {
             Userdetails userdetails = getUserByEmail(email).getBody();
             System.out.println("Step 5");
             System.out.println(userdetails1);
+            
+            ValidationClass vc = new ValidationClass();
+        	
+        	String result = vc.validateStep5(userdetails1);
+            
+        	ResponseData responseData = new ResponseData();
+        	
+        	if(result.equalsIgnoreCase("true")) { 
+            
             assert userdetails != null;
             userdetails.setOutside_my_bubble(userdetails1.getOutside_my_bubble());
             userdetails.setOmb_emailid(userdetails1.getOmb_emailid());
@@ -396,9 +476,17 @@ public class RouteController {
             tabs.setTab5("true");
             mappingRepo.saveAndFlush(tabs);
             
-            ResponseData responseData = new ResponseData();
+           
 	        responseData.setStatus("ok");
 	        responseData.setToken(userdetails1.getToken());
+	        
+        	} else {
+        		
+    	        responseData.setStatus("not ok");
+    	        responseData.setMsg(result);
+    	        responseData.setToken(userdetails1.getToken());
+        		
+        	}
 	        
 	        // Return response with status OK and response object
 	        return ResponseEntity.ok(responseData);
@@ -473,6 +561,19 @@ public class RouteController {
             udp.setEmailid(userdetails.getEmailid());
             udp.setFirst_name(userdetails.getFirst_name());
             udp.setLast_name(userdetails.getLast_name());
+            System.out.println(userdetails.getRiver_id());
+            if(userdetails.getRiver_id() == 0) {
+            
+            	udp.setRiver("DIY option selected");
+            	udp.setRiver_level("-");
+            	udp.setRiver_outfitter("-");
+                udp.setRiver_section("-");
+                udp.setRiver_states("-");
+                udp.setRiver_date(null);
+            	
+            	
+            } else {
+            
             Riverslist river = riverRepo.getRiverList(userdetails.getRiver_id());
             udp.setRiver(river.getRiver());
             udp.setRiver_level(river.getLevel());
@@ -480,6 +581,8 @@ public class RouteController {
             udp.setRiver_section(river.getRiver_section());
             udp.setRiver_states(river.getStates());
             udp.setRiver_date(river.getDate());
+            }
+            
             udp.setOutside_my_bubble(userdetails.getOutside_my_bubble());
             udp.setOmb_first_name(userdetails.getOmb_first_name());
             udp.setOmb_last_name(userdetails.getOmb_last_name());
