@@ -28,4 +28,8 @@ public class RiverListService {
 		return riverRepository.getById(river_id);
 	}
 
+	public Boolean getMaxRiverId (long riverid) {
+		return riverRepository.existsById(riverid);
+	}
+
 }
