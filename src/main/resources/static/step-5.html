@@ -23,7 +23,7 @@
   <section class="section-2 step-5">
     <div class="w-layout-blockcontainer container-2 w-container">
       <div class="div-block-2"><img src="images/RAFT-LogoLogo.svg" loading="lazy" alt="" class="image">
-        <h5 id="w-node-c6cbdfbd-2ae9-5684-82f8-b2d44091cc32-d902efcf" class="heading-3">Email: <span class="text-span user_email"></span></h5>
+        <h5 id="w-node-c6cbdfbd-2ae9-5684-82f8-b2d44091cc32-d902efcf" class="heading-3">Email: <span class="text-span user_email">currentuser@email.com</span></h5>
         <a href="https://raftapp.azurewebsites.net/" class="w-inline-block"><img src="images/VectorLogout.svg" loading="lazy" alt="" class="image-2"></a>
       </div>
       <div class="div-block-3">
@@ -48,7 +48,7 @@
             <div id="w-node-_79eb3f5e-6b38-a6f6-aeec-07b7238925f3-d902efcf"><label class="radio-button-field-3 w-radio">
                 <div class="w-form-formradioinput w-form-formradioinput--inputType-custom radio-button w-radio-input" id="check_Self"></div><input type="radio" name="Partner_Pair" id="Self" data-name="Partner_Pair" required="" style="opacity:0;position:absolute;z-index:-1" value="Self"><span class="radio-button-label-3 w-form-label" for="Self">I have already identified someone to participate in my adventure with me. Their name and email address is below. Understand they will have to submit an application as well.</span>
               </label>
-              <div id="Self_div">
+              <div id="Self_div" style="display:none">
                 <div class="div-block-12"><input class="text-field-3 w-input" maxlength="256" name="P_F_Name" data-name="P_F_Name" placeholder="First Name" type="text" id="P_F_Name"><input class="text-field-3 w-input" maxlength="256" name="P_L_Name" data-name="P_L_Name" placeholder="Last Name" type="text" id="P_L_Name"></div><input class="text-field-3 w-input" maxlength="256" name="P_Email" data-name="P_Email" placeholder="Email Address" type="email" id="P_Email">
               </div>
             </div>
@@ -231,7 +231,9 @@ $('.div-block-3').html( lists);
                   		// Redirect to the new URL
                   		window.location.href = redirectUrl;
                   	}
-                  }  
+                  }  else {
+                  	alert(response.msg);
+                  }
                   console.log("Success:", response);
                   $('.success-message').show();
                   $('.error-message').hide();
@@ -295,7 +297,7 @@ $('.div-block-3').html( lists);
        
                $.ajax({
                    type: "POST",
-                  // url: "http://localhost:8080/api/"+api, 
+                   //url: "http://localhost:8080/api/"+api, 
                      url: "https://raftapp.azurewebsites.net/api/"+api,
                    data: JSON.stringify(formData),
                    contentType: "application/json",
@@ -310,7 +312,7 @@ $('.div-block-3').html( lists);
                                  
                              }
                              
-                             if(pair_self='Self'){
+                             if(pair_self=='Self'){
                              $('#P_F_Name').val(response.omb_first_name);
                              $('#P_L_Name').val(response.omb_last_name);
                              $('#P_Email').val(response.omb_emailid);
