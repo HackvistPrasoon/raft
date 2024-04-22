@@ -26,4 +26,8 @@ private final EducationRepo educationRepository ;
 		return educationRepository.getById(id);
 	}
 
+	public Boolean ifExist(Long id) {
+		return educationRepository.existsById(id);
+	}
+
 }
