@@ -23,7 +23,7 @@
   <section class="section-2">
     <div class="w-layout-blockcontainer container-2 w-container">
       <div class="div-block-2"><img src="images/RAFT-LogoLogo.svg" loading="lazy" alt="" class="image">
-        <h5 id="w-node-dce7bf2c-2ed5-5587-43c5-fb6ba646e886-cfb277e0" class="heading-3">Email: <span class="text-span user_email"></span></h5>
+        <h5 id="w-node-dce7bf2c-2ed5-5587-43c5-fb6ba646e886-cfb277e0" class="heading-3">Email: <span class="text-span user_email">currentuser@email.com</span></h5>
         <a href="https://raftapp.azurewebsites.net/" class="w-inline-block"><img src="images/VectorLogout.svg" loading="lazy" alt="" class="image-2"></a>
       </div>
       <div class="div-block-3">
@@ -139,11 +139,13 @@ $('.div-block-3').html( lists);
                     // Handle success
                     if(response.status==='ok'){
                     	if(response.token===token){
-                    		var redirectUrl = "http://localhost:8080/step-2.html?token=" + response.token;
-							//var redirectUrl = "https://raftapp.azurewebsites.net/step-2.html?token=" + response.token;
+                    		//var redirectUrl = "http://localhost:8080/step-2.html?token=" + response.token;
+							var redirectUrl = "https://raftapp.azurewebsites.net/step-2.html?token=" + response.token;
                     		// Redirect to the new URL
                     		window.location.href = redirectUrl;
                     	}
+                    } else {
+                    	alert(response.msg);
                     }
                     console.log("Success:", response);
                     $('.success-message').show();
@@ -167,8 +169,8 @@ $('.div-block-3').html( lists);
      
              $.ajax({
                  type: "POST",
-               //  url: "http://localhost:8080/api/"+api, 
-                 url: "https://raftapp.azurewebsites.net/api/"+api,
+                 //url: "http://localhost:8080/api/"+api, 
+                   url: "https://raftapp.azurewebsites.net/api/"+api,
                  data: JSON.stringify(formData),
                  contentType: "application/json",
                  success: function(response) {
