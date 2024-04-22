@@ -28,4 +28,8 @@ private final AgeRepo ageRepository ;
 		return ageRepository.getById(id);
 	}
 
+	public Boolean ifExist(Long id) {
+		return ageRepository.existsById(id);
+	}
+
 }
