@@ -26,4 +26,8 @@ private final LocationRepo locationRepository ;
 		return locationRepository.getById(id);
 	}
 
+		public Boolean ifExist(Long id) {
+		return locationRepository.existsById(id);
+	}
+
 }
