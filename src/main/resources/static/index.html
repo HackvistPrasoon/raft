@@ -58,6 +58,9 @@ $(document).ready(function() {
             success: function(response) {
                 // Handle success
                 console.log("Success:", response);
+              if(response === "false") {
+                	alert("Enter Valid Mail Id.");
+                } 
                 $('.success-message').show();
                 $('.error-message').hide();
             },
