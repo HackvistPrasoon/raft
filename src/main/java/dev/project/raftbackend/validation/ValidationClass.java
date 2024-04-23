@@ -110,9 +110,9 @@ public String validateStep2(UserDetailsBean udb) {
 		  pattern = Pattern.compile(String2);
 		 
 		  matcher = pattern.matcher(udb.getRiver_id()+"");
-		 Boolean exist = riverRepo.getMaxRiverId(udb.getRiver_id());
+		// Boolean exist = riverRepo.getMaxRiverId(udb.getRiver_id());
 		 
-			 if(!matcher.matches() || !exist) {
+			 if(!matcher.matches() ) {
 				 return "Select Valid River.";
 			 } else {
 				 result = "true";
@@ -467,9 +467,9 @@ public String validateStep2(UserDetailsBean udb) {
 			  pattern = Pattern.compile(String2);
 			 
 			  matcher = pattern.matcher(udb.getEthnic_id()+"");
-			 Boolean exist = ethnicRepo.ifExist(udb.getRiver_id());
+			// Boolean exist = ethnicRepo.ifExist(udb.getRiver_id());
 			 
-				 if(!matcher.matches() || !exist) {
+				 if(!matcher.matches() ) {
 					 return "Select Valid Ethnic Option.";
 				 } else {
 					 result = "true";
@@ -483,9 +483,9 @@ public String validateStep2(UserDetailsBean udb) {
 				  pattern = Pattern.compile(String2);
 				 
 				  matcher = pattern.matcher(udb.getGender_id()+"");
-				 Boolean exist = ethnicRepo.ifExist(udb.getGender_id());
+			//	 Boolean exist = ethnicRepo.ifExist(udb.getGender_id());
 				 
-					 if(!matcher.matches() || !exist) {
+					 if(!matcher.matches() ) {
 						 return "Select Valid Gender Option.";
 					 } else {
 						 result = "true";
@@ -499,9 +499,9 @@ public String validateStep2(UserDetailsBean udb) {
 				  pattern = Pattern.compile(String2);
 				 
 				  matcher = pattern.matcher(udb.getAge_id()+"");
-				 Boolean exist = ethnicRepo.ifExist(udb.getAge_id());
+				// Boolean exist = ethnicRepo.ifExist(udb.getAge_id());
 				 
-					 if(!matcher.matches() || !exist) {
+					 if(!matcher.matches() ) {
 						 return "Select Valid Age Option.";
 					 } else {
 						 result = "true";
@@ -515,9 +515,9 @@ public String validateStep2(UserDetailsBean udb) {
 				  pattern = Pattern.compile(String2);
 				 
 				  matcher = pattern.matcher(udb.getEducation_id()+"");
-				 Boolean exist = ethnicRepo.ifExist(udb.getEducation_id());
+				// Boolean exist = ethnicRepo.ifExist(udb.getEducation_id());
 				 
-					 if(!matcher.matches() || !exist) {
+					 if(!matcher.matches() ) {
 						 return "Select Valid Education Option.";
 					 } else {
 						 result = "true";
@@ -531,9 +531,9 @@ public String validateStep2(UserDetailsBean udb) {
 				  pattern = Pattern.compile(String2);
 				 
 				  matcher = pattern.matcher(udb.getLocation_id()+"");
-				 Boolean exist = ethnicRepo.ifExist(udb.getLocation_id());
+				// Boolean exist = ethnicRepo.ifExist(udb.getLocation_id());
 				 
-					 if(!matcher.matches() && !exist) {
+					 if(!matcher.matches() ) {
 						 return "Select Valid Location Option.";
 					 } else {
 						 result = "true";
