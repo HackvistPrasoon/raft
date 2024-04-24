@@ -4,6 +4,7 @@ package dev.project.raftbackend.Controller;
 import dev.project.raftbackend.Service.MailService;
 import dev.project.raftbackend.Repo.UserdetailsRepo;
 import dev.project.raftbackend.model.Userdetails;
+import dev.project.raftbackend.validation.ValidationClass;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import io.jsonwebtoken.security.Keys;
