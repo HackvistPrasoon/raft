@@ -257,9 +257,9 @@ public class RouteController {
             Userdetails userdetails = getUserByEmail(email).getBody();
 //            System.out.println(userdetails);
             
-            ValidationClass vc = new ValidationClass();
+          //  ValidationClass vc = new ValidationClass();
         	
-        	String result = vc.validateStep2(userdetails1);
+        //	String result = vc.validateStep2(userdetails1);
             
         	ResponseData responseData = new ResponseData();
         	
@@ -403,9 +403,9 @@ public class RouteController {
             Userdetails userdetails = getUserByEmail(email).getBody();
          //   System.out.println(userdetails);
             
-            ValidationClass vc = new ValidationClass();
+          //  ValidationClass vc = new ValidationClass();
         	
-        	String result = vc.validateStep4(userdetails1);
+        	//String result = vc.validateStep4(userdetails1);
             
         	ResponseData responseData = new ResponseData();
         	
