@@ -263,7 +263,7 @@ public class RouteController {
             
         	ResponseData responseData = new ResponseData();
         	
-        	if(result.equalsIgnoreCase("true")) {  
+        	//if(result.equalsIgnoreCase("true")) {  
             
             
             assert userdetails != null;
@@ -281,13 +281,13 @@ public class RouteController {
 	        responseData.setStatus("ok");
 	        responseData.setToken(userdetails1.getToken());
 	        
-        	} else {
+        	//} else {
         		
-    	        responseData.setStatus("not ok");
-    	        responseData.setMsg(result);
-    	        responseData.setToken(userdetails1.getToken());
+    	        //responseData.setStatus("not ok");
+    	        //responseData.setMsg(result);
+    	        //responseData.setToken(userdetails1.getToken());
         		
-        	}
+        	//}
 	        
 	        // Return response with status OK and response object
 	        return ResponseEntity.ok(responseData);
@@ -409,7 +409,7 @@ public class RouteController {
             
         	ResponseData responseData = new ResponseData();
         	
-        	if(result.equalsIgnoreCase("true")) { 
+        	//if(result.equalsIgnoreCase("true")) { 
             
             
             assert userdetails != null;
@@ -429,13 +429,13 @@ public class RouteController {
 	        responseData.setStatus("ok");
 	        responseData.setToken(userdetails1.getToken());
 	        
-        	} else {
+        //	} else {
         		
-    	        responseData.setStatus("not ok");
-    	        responseData.setMsg(result);
-    	        responseData.setToken(userdetails1.getToken());
+    	  //      responseData.setStatus("not ok");
+    	  //      responseData.setMsg(result);
+    	  //      responseData.setToken(userdetails1.getToken());
         		
-        	}
+        //	}
 	        
 	        // Return response with status OK and response object
 	        return ResponseEntity.ok(responseData);
