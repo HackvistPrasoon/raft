@@ -82,48 +82,28 @@ public class Step0 {
 			 
 			 System.out.println(tabs);
 			 
-//			 if(tabs.getTab5() != null && tabs.getTab5().equalsIgnoreCase("true")) {
 			 if (tabs != null && tabs.getTab5() != null && tabs.getTab5().equalsIgnoreCase("true")) {
 
-				// String redirectUrl =
-					// "https://raftapp.azurewebsites.net/preview-page?token="+token;
 				 redirectUrl = mini_url+"preview-page.html?token=" + token;
 					response.sendRedirect(redirectUrl);
 			 } else
-//				 if (tabs.getTab4() != null && tabs.getTab4().equalsIgnoreCase("true")) {
 				 if (tabs != null && tabs.getTab4() != null && tabs.getTab4().equalsIgnoreCase("true")) {
 
-				// String redirectUrl =
-					// "https://raftapp.azurewebsites.net/step-5.html?token="+token;
 				  redirectUrl =  mini_url+"step-5.html?token=" + token;
 					response.sendRedirect(redirectUrl);
 			 } else
-//				 if (tabs.getTab3() != null && tabs.getTab3().equalsIgnoreCase("true")) {
 				 if (tabs != null && tabs.getTab3() != null && tabs.getTab3().equalsIgnoreCase("true")) {
-
-				// String redirectUrl =
-					// "https://raftapp.azurewebsites.net/step-4.html?token="+token;
 				  redirectUrl =  mini_url+"step-4.html?token=" + token;
 					response.sendRedirect(redirectUrl);
 			 } else 
-//				 if (tabs.getTab2() != null && tabs.getTab2().equalsIgnoreCase("true")) {
 				 if (tabs != null && tabs.getTab2() != null && tabs.getTab2().equalsIgnoreCase("true")) {
-
-				// String redirectUrl =
-					// "https://raftapp.azurewebsites.net/step-3.html?token="+token;
 				  redirectUrl =  mini_url+"step-3.html?token=" + token;
 					response.sendRedirect(redirectUrl);
 			 } else 
-//				 if (tabs.getTab1() != null && tabs.getTab1().equalsIgnoreCase("true")) {
 				 if (tabs != null && tabs.getTab1() != null && tabs.getTab1().equalsIgnoreCase("true")) {
-
-				// String redirectUrl =
-					// "https://raftapp.azurewebsites.net/step-2.html?token="+token;
 				  redirectUrl =  mini_url+"step-2.html?token=" + token;
 					response.sendRedirect(redirectUrl);
 			 } else {
-				// String redirectUrl =
-					// "https://raftapp.azurewebsites.net/step-1.html?token="+token;
 				  redirectUrl =  mini_url+"step-1.html?token=" + token;
 					response.sendRedirect(redirectUrl);
 			 }

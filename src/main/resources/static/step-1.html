@@ -199,12 +199,10 @@ $('.div-block-3').html( lists);
     }
     function back_button(url){
     	var urlParams = new URLSearchParams(window.location.search);
-    	let currentPath = window.location.pathname;
     	console.log(urlParams);
         var token = urlParams.get('token');
-    	var redirectUrl = currentPath+"?token=" +token;
+    	var redirectUrl = url+"?token=" +token;
 		// Redirect to the new URL
-		console.log("url "+url);
 		console.log(redirectUrl)
 		window.location.href = redirectUrl;
     }
